@@ -1,8 +1,8 @@
 {
   "name": "vue-gcode-viewer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Vue component for displaying GCODE via Three.JS",
-  "main": "lib/index.vue",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib"
   },

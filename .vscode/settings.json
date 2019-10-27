@@ -35,7 +35,7 @@
       "scope": "workspace",
       "iconColor": "purple",
       "highlightColor": "#9E63D4"
-    }
+    },
     //Default tags
     {
       "tag": "ANCHOR",
@@ -90,18 +90,6 @@
   "vetur.format.options.tabSize": 2,
   "vetur.format.defaultFormatter.ts": "vscode-typescript",
   "vetur.format.defaultFormatter.html": "js-beautify-html",
-  //VS Code Counter
-  "VSCodeCounter.exclude": [
-    "**/.cache/**",
-    "**/.github/**",
-    "**/.vscode/**",
-    "**/crypto/**",
-    "**/data/**",
-    "**/dist/**",
-    "**/node_modules/**",
-    "package-lock.json",
-    "package.json"
-  ],
   //Formatter settings
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
   "javascript.preferences.quoteStyle": "single",

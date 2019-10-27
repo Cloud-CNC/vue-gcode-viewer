@@ -1,9 +1,10 @@
 {
-  "extends": [
-    "plugin:vue/recommended"
-  ],
+	"extends": [
+		"plugin:vue/recommended"
+	],
 	"parserOptions": {
-		"ecmaVersion": 10
+		"ecmaVersion": 10,
+		"sourceType": "module"
 	},
 	"rules": {
 		"arrow-parens": [
@@ -41,7 +42,6 @@
 		"prefer-const": "warn"
 	},
 	"env": {
-		"browser": true,
-		"node": true
+		"browser": true
 	}
 }

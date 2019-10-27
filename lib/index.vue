@@ -22,8 +22,12 @@ import GCodeParser from './gcode-parser.js';
 
 export default {
   props: {
-    raw: 'String',
-    theme: 'Object'
+    bed: Object,
+    gcode: String,
+    position: Object,
+    rotation: Object,
+    scale: Object,
+    theme: Object
   },
   data: () => ({
     camera: null,
@@ -37,7 +41,57 @@ export default {
     renderer: null,
     destroyed: false
   }),
-  mounted: function ()  {
+  watch: {
+    //Update model
+    gcode: function () 
+    {
+      const parser = new GCodeParser(
+        this.theme.extrusionColor,
+        this.theme.pathColor
+      );
+      parser.parse(this.gcode).then(object => 
+      {
+        //Store for later manipulation
+        this.object = object;
+
+        this.setRotation();
+        this.setScale();
+        this.setPosition();
+
+        //Add to scene
+        this.scene.add(object.extrusion);
+        this.scene.add(object.path);
+      });
+    },
+    //Update plane
+    bed: {
+      deep: true,
+      handler: 'setPlane'
+    },
+    //Update position
+    position: {
+      deep: true,
+      handler: 'setPosition'
+    },
+    //Update rotation
+    rotation: {
+      deep: true,
+      handler: 'setRotation'
+    },
+    //Update scale
+    scale: {
+      deep: true,
+      handler: 'setScale'
+    },
+    //Update theme
+    theme: {
+      deep: true,
+      handler: 'setTheme'
+    }
+  },
+  //Setup
+  mounted: function () 
+  {
     //Renderer
     this.renderer = new WebGLRenderer({antialias: true});
     this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -55,7 +109,7 @@ export default {
       50,
       this.$refs.canvas.clientWidth / this.$refs.canvas.clientHeight,
       0.1,
-      50
+      200
     );
     this.camera.position.set(0, 12, -12);
 
@@ -74,38 +128,16 @@ export default {
 
     //Scene
     this.scene = new Scene();
-    this.scene.background = new Color(this.backgroundColor);
+    this.scene.background = new Color(this.theme.backgroundColor);
 
-    //Ground plane
+    //Plane
     this.plane = new Mesh(
-      new PlaneBufferGeometry(10, 10),
-      new MeshBasicMaterial({color: new Color(theme.accent)})
+      new PlaneBufferGeometry(),
+      new MeshBasicMaterial({color: new Color(this.theme.bedColor)})
     );
     this.plane.rotation.x = -Math.PI / 2;
+    this.setPlane();
     this.scene.add(this.plane);
-
-    //Parse object
-    const parser = new GCodeParser(theme.primary, theme.secondary, 0.1);
-    parser.parse(this.raw).then(object =>    {
-      //Set position
-      object.extrusion.position.set(11.15, 0, -11.15);
-      object.path.position.set(11.15, 0, -11.15);
-
-      //Set rotation
-      object.extrusion.rotation.set(-Math.PI / 2, 0, Math.PI);
-      object.path.rotation.set(-Math.PI / 2, 0, Math.PI);
-
-      //Set scale
-      object.extrusion.scale.set(0.1, 0.1, 0.1);
-      object.path.scale.set(0.1, 0.1, 0.1);
-
-      //Store for later manipulation
-      this.object = object;
-
-      //Add to scene
-      this.scene.add(object.extrusion);
-      this.scene.add(object.path);
-    });
 
     //Subscribe resize function to resize event
     window.addEventListener('resize', this.resize);
@@ -114,17 +146,20 @@ export default {
     this.animate();
   },
   //Cleanup
-  destroyed: function ()  {
+  destroyed: function () 
+  {
     //Unsubscribe resize function to resize event
     window.removeEventListener('resize', this.resize);
 
     //Clean everything in the scene
-    this.scene.children.forEach(object =>    {
+    this.scene.children.forEach(object => 
+    {
       //Geometry
       if (
         object.geometry != null &&
         typeof object.geometry.dispose == 'function'
-      )      {
+      ) 
+      {
         object.geometry.dispose();
       }
 
@@ -132,7 +167,8 @@ export default {
       if (
         object.material != null &&
         typeof object.material.dispose == 'function'
-      )      {
+      ) 
+      {
         object.material.dispose();
       }
     });
@@ -149,23 +185,57 @@ export default {
     this.renderer.dispose();
   },
   methods: {
-    //Add light
-    addLight: function (x, y, z, color, intensity)    {
-      const light = new DirectionalLight(color, intensity);
-      light.castShadow = true;
-      light.position.set(x, y, z);
-      this.scene.add(light);
+    //Set plane size
+    setPlane: function () 
+    {
+      const {X, Y} = this.bed;
+      this.plane.scale.set(X, Y, 1);
+    },
+    //Set object position
+    setPosition: function () 
+    {
+      const {X, Y, Z} = this.position;
+      this.object.extrusion.position.set(X, Y, Z);
+      this.object.path.position.set(X, Y, Z);
+    },
+    //Set object rotation
+    setRotation: function () 
+    {
+      let {X, Y, Z} = this.rotation;
+      X *= Math.PI / 180;
+      Y *= Math.PI / 180;
+      Z *= Math.PI / 180;
+      this.object.extrusion.rotation.set(X, Y, Z);
+      this.object.path.rotation.set(X, Y, Z);
+    },
+    //Set object scale
+    setScale: function () 
+    {
+      const {X, Y, Z} = this.scale;
+      this.object.extrusion.scale.set(Z, X, Y);
+      this.object.path.scale.set(Z, X, Y);
+    },
+    //Set theme
+    setTheme: function () 
+    {
+      this.object.extrusion.material.color.set(this.theme.extrusionColor);
+      this.object.path.material.color.set(this.theme.pathColor);
+      this.plane.material.color.set(this.theme.bedColor);
+      this.scene.background.set(this.theme.backgroundColor);
     },
     //Animate motion
-    animate: function ()    {
-      if (!this.destroyed)      {
+    animate: function () 
+    {
+      if (!this.destroyed) 
+      {
         this.controls.update();
         requestAnimationFrame(this.animate);
         this.renderer.render(this.scene, this.camera);
       }
     },
     //Resize function
-    resize: function ()    {
+    resize: function () 
+    {
       //Update renderer size
       this.renderer.setSize(
         this.$refs.canvas.clientWidth,
@@ -177,22 +247,6 @@ export default {
         this.$refs.canvas.clientWidth / this.$refs.canvas.clientHeight;
       this.camera.updateProjectionMatrix();
     }
-  },
-  watch: {
-    //Update theme
-    theme: (oldTheme, newTheme) =>    {
-      //Update extrusion color
-      this.object.extrusion.material.color.set(newTheme.extrusionColor);
-
-      //Update path color
-      this.object.path.material.color.set(newTheme.pathColor);
-
-      //Update plane color
-      this.plane.material.color.set(newTheme.planeColor);
-
-      //Update background color
-      this.scene.background.set(newTheme.backgroundColor);
-    }
   }
 };
 </script>
@@ -201,5 +255,6 @@ export default {
 #canvas {
   position: fixed;
   width: 100%;
+  height: 100%;
 }
 </style>

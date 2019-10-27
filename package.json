@@ -25,7 +25,11 @@
   },
   "homepage": "https://github.com/Cloud-CNC/vue-gcode-viewer#readme",
   "dependencies": {
+    "eslint": "^6.6.0",
     "three": "^0.109.0",
     "three-orbitcontrols": "^2.108.1"
+  },
+  "devDependencies": {
+    "eslint-plugin-vue": "^5.2.3"
   }
 }

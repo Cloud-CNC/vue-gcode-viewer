@@ -1,44 +1,21 @@
 # Vue GCODE Viewer
-A [Vue](https://github.com/vuejs/vue) component for displaying GCODE via [Three.JS](https://github.com/mrdoob/three.js)
+A Vue component for displaying GCODE via Three.JS
 
-## Usage
-```Vue
-<template>
-  <gcode-viewer :raw="gcode" :theme="theme"/>
-</template>
+## Demo
+*Uses Ultimaker 2 dimensions for bed size*
 
-<script>
-import vueGcodeViewer from 'vue-gcode-viewer';
-export default {
-  components: {
-    'gcode-viewer': vueGcodeViewer
-  },
-  data: {
-    gcode: `
-      G0 X0 Y0 Z0
-    `,
-    theme: {
-      "extrusionColor": "#4287f5",
-      "pathColor": "#0a2f6b",
-      "planeColor": "#b4c3db",
-      "backgroundColor": "#586375"
-    }
-  }
-}
-</script>
-```
+[![Edit Vue GCODE Loader](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vue-gcode-loader-exvqi)
 
 ## Documentation
 ### Props
-* `raw`: String containing raw GCODE (Such as from an API). Read [gcode-parser.js](lib/gcode-parser.js#L66) for all supported GCODE commands.
-* `theme`: Object containing 4 properties, see below for example.
+Name | Type | Description | Example
+--- | --- | --- | --- | ---
+`bed` | Object | Bed size | `{X: 22.3, Y: 22.3}`
+`gcode` | String | Raw GCODE | `G0 X0 Y0 Z0`
+`position` | Object | GCODE Position | `{X: 11.15, Y: 0, Z: 11.15}`
+`rotation` | Object | GCODE Rotation | `{X: -90, Y: 0, Z: 180}`
+`scale` | Object | GCODE Scale | `{X: 0.1, Y: 0.1, Z: 0.1}`
+`theme` | Object | Theme colors | `{extrusionColor: "#4287f5", pathColor: "#0a2f6b",bedColor: "#586375", backgroundColor: "#dfe4ed"}`
 
-*Colors can be any of the constructors parameters for a [Three.JS color](https://threejs.org/docs/#api/en/math/Color)*
-```JavaScript
-{
-  "extrusionColor": "<string>",
-  "pathColor": "<string>",
-  "planeColor": "<string>",
-  "backgroundColor": "<string>"
-}
-```
+### How it works
+Vue GCODE Viewer works by first passing the user-supplied GCODE to the [parser](./lib/gcode-parser.js). The parser returns 2 THREE.JS Line objects, one containing the extruded material pathway and one containing the travel/jog pathway. The Vue [component](./lib/index.vue) then adds the two objects to a THREE.JS scene which is rendered via WebGL.

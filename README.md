@@ -9,7 +9,7 @@ A Vue component for displaying GCODE via Three.JS
 ## Documentation
 ### Props
 Name | Type | Description | Example
---- | --- | --- | --- | ---
+--- | --- | --- | ---
 `bed` | Object | Bed size | `{X: 22.3, Y: 22.3}`
 `gcode` | String | Raw GCODE | `G0 X0 Y0 Z0`
 `position` | Object | GCODE Position | `{X: 11.15, Y: 0, Z: 11.15}`

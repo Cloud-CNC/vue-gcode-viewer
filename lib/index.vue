@@ -111,7 +111,7 @@ export default {
       0.1,
       200
     );
-    this.camera.position.set(0, 12, -12);
+    this.camera.position.set(0, this.bed.X / 2, -this.bed.Y);
 
     //Orbit controls
     this.controls = new OrbitControls(this.camera, this.$refs.canvas);

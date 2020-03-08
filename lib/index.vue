@@ -7,15 +7,16 @@
 
 <script>
 import{
-  WebGLRenderer,
-  PerspectiveCamera,
-  MOUSE,
-  Scene,
   Color,
+  DirectionalLight,
+  GammaEncoding,
+  MOUSE,
   Mesh,
-  PlaneBufferGeometry,
   MeshBasicMaterial,
-  DirectionalLight
+  PerspectiveCamera,
+  PlaneBufferGeometry,
+  Scene,
+  WebGLRenderer
 } from 'three';
 import OrbitControls from 'three-orbitcontrols';
 import GCodeParser from './gcode-parser.js';
@@ -43,13 +44,13 @@ export default {
   }),
   watch: {
     //Update model
-    gcode: function () 
+    gcode: function ()    
     {
       const parser = new GCodeParser(
         this.theme.extrusionColor,
         this.theme.pathColor
       );
-      parser.parse(this.gcode).then(object => 
+      parser.parse(this.gcode).then(object =>      
       {
         //Store for later manipulation
         this.object = object;
@@ -90,7 +91,7 @@ export default {
     }
   },
   //Setup
-  mounted: function () 
+  mounted: function ()  
   {
     //Renderer
     this.renderer = new WebGLRenderer({antialias: true});
@@ -99,8 +100,8 @@ export default {
       this.$refs.canvas.clientWidth,
       this.$refs.canvas.clientHeight
     );
-    this.renderer.gammaInput = true;
-    this.renderer.gammaOutput = true;
+    this.renderer.encoding = GammaEncoding;
+    this.renderer.outputEncoding = GammaEncoding;
     this.renderer.shadowMap.enabled = true;
     this.$refs.canvas.appendChild(this.renderer.domElement);
 
@@ -117,7 +118,7 @@ export default {
     this.controls = new OrbitControls(this.camera, this.$refs.canvas);
     this.controls.rotateSpeed = 0.7;
     this.controls.minDistance = 1;
-    this.controls.maxDistance = 50;
+    this.controls.maxDistance = 100;
     this.controls.minPolarAngle = 0;
     this.controls.maxPolarAngle = Math.PI;
     this.controls.mouseButtons = {
@@ -146,19 +147,19 @@ export default {
     this.animate();
   },
   //Cleanup
-  destroyed: function () 
+  destroyed: function ()  
   {
     //Unsubscribe resize function to resize event
     window.removeEventListener('resize', this.resize);
 
     //Clean everything in the scene
-    this.scene.children.forEach(object => 
+    this.scene.children.forEach(object =>    
     {
       //Geometry
       if (
         object.geometry != null &&
         typeof object.geometry.dispose == 'function'
-      ) 
+      )      
       {
         object.geometry.dispose();
       }
@@ -167,7 +168,7 @@ export default {
       if (
         object.material != null &&
         typeof object.material.dispose == 'function'
-      ) 
+      )      
       {
         object.material.dispose();
       }
@@ -186,20 +187,20 @@ export default {
   },
   methods: {
     //Set plane size
-    setPlane: function () 
+    setPlane: function ()    
     {
       const {X, Y} = this.bed;
       this.plane.scale.set(X, Y, 1);
     },
     //Set object position
-    setPosition: function () 
+    setPosition: function ()    
     {
       const {X, Y, Z} = this.position;
       this.object.extrusion.position.set(X, Y, Z);
       this.object.path.position.set(X, Y, Z);
     },
     //Set object rotation
-    setRotation: function () 
+    setRotation: function ()    
     {
       let {X, Y, Z} = this.rotation;
       X *= Math.PI / 180;
@@ -209,14 +210,14 @@ export default {
       this.object.path.rotation.set(X, Y, Z);
     },
     //Set object scale
-    setScale: function () 
+    setScale: function ()    
     {
       const {X, Y, Z} = this.scale;
       this.object.extrusion.scale.set(Z, X, Y);
       this.object.path.scale.set(Z, X, Y);
     },
     //Set theme
-    setTheme: function () 
+    setTheme: function ()    
     {
       this.object.extrusion.material.color.set(this.theme.extrusionColor);
       this.object.path.material.color.set(this.theme.pathColor);
@@ -224,9 +225,9 @@ export default {
       this.scene.background.set(this.theme.backgroundColor);
     },
     //Animate motion
-    animate: function () 
+    animate: function ()    
     {
-      if (!this.destroyed) 
+      if (!this.destroyed)      
       {
         this.controls.update();
         requestAnimationFrame(this.animate);
@@ -234,7 +235,7 @@ export default {
       }
     },
     //Resize function
-    resize: function () 
+    resize: function ()    
     {
       //Update renderer size
       this.renderer.setSize(

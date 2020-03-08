@@ -1,10 +1,12 @@
 # Vue GCODE Viewer
+![status](https://img.shields.io/badge/status-release-brightgreen)
+[![issues](https://img.shields.io/github/issues/Cloud-CNC/vue-gcode-viewer)](https://github.com/Cloud-CNC/vue-gcode-viewer/issues)
+[![last commit](https://img.shields.io/github/last-commit/Cloud-CNC/vue-gcode-viewer)](https://github.com/Cloud-CNC/vue-gcode-viewer/commits/master)
+
 A Vue component for displaying GCODE via Three.JS
 
-## Demo
-*Uses Ultimaker 2 dimensions for bed size*
-
-[![Edit Vue GCODE Loader](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vue-gcode-loader-exvqi)
+## Example
+[Cloud CNC](https://github.com/Cloud-CNC/frontend/blob/development/src/views/file.vue#L43)
 
 ## Documentation
 ### Props

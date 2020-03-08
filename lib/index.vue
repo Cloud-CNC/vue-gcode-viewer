@@ -8,7 +8,6 @@
 <script>
 import{
   Color,
-  DirectionalLight,
   GammaEncoding,
   MOUSE,
   Mesh,

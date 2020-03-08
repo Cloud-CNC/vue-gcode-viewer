@@ -1,8 +1,8 @@
 {
   "name": "vue-gcode-viewer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Vue component for displaying GCODE via Three.JS",
-  "main": "lib/index.js",
+  "main": "index.js",
   "directories": {
     "lib": "lib"
   },
@@ -25,11 +25,11 @@
   },
   "homepage": "https://github.com/Cloud-CNC/vue-gcode-viewer#readme",
   "dependencies": {
-    "eslint": "^6.6.0",
     "three": "^0.109.0",
     "three-orbitcontrols": "^2.110.3"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
     "eslint-plugin-vue": "^5.2.3"
   },
   "peerDependencies": {

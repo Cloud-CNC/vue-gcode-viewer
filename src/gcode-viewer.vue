@@ -66,6 +66,14 @@ export default {
     destroyed: false
   }),
   watch: {
+    //Update plane
+    bed: {
+      deep: true,
+      handler: function ()
+      {
+        utils.update.bed(this.plane, this.bed);
+      }
+    },
     //Update model
     gcode: function (raw)    
     {
@@ -73,14 +81,6 @@ export default {
       utils.update.position(this.object, this.position);
       utils.update.rotation(this.object, this.rotation);
       utils.update.scale(this.object, this.scale);
-    },
-    //Update plane
-    bed: {
-      deep: true,
-      handler: function ()
-      {
-        utils.update.bed(this.bed, this.plane);
-      }
     },
     //Update position
     position: {

@@ -12,7 +12,7 @@ const update = {
   /**
    * @function Update bed
    */
-  bed: (bed, plane) =>
+  bed: (plane, bed) =>
   {
     const {X, Y} = bed;
     plane.scale.set(X, Y, 1);

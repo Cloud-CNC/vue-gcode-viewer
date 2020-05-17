@@ -22,12 +22,50 @@ import GCodeParser from './gcode-parser.js';
 
 export default {
   props: {
-    bed: Object,
-    gcode: String,
-    position: Object,
-    rotation: Object,
-    scale: Object,
-    theme: Object
+    bed: {
+      default: () => ({
+        X: 10,
+        Y: 10
+      }),
+      type: Object
+    },
+    gcode: {
+      required: true,
+      type: String
+    },
+    position: {
+      default: () => ({
+        X: 5,
+        Y: 0,
+        Z: 5
+      }),
+      type: Object
+    },
+    rotation: {
+      default: () => ({
+        X: -90,
+        Y: 0,
+        Z: 180
+      }),
+      type: Object
+    },
+    scale: {
+      default: () => ({
+        X: 0.1,
+        Y: 0.1,
+        Z: 0.1
+      }),
+      type: Object
+    },
+    theme: {
+      default: () => ({
+        extrusionColor: '#4287f5',
+        pathColor: '#0a2f6b',
+        bedColor: '#586375',
+        backgroundColor: '#dfe4ed'
+      }),
+      type: Object
+    }
   },
   data: () => ({
     camera: null,
@@ -243,8 +281,7 @@ export default {
       );
 
       //Update camera aspect ratio
-      this.camera.aspect =
-        this.$refs.canvas.clientWidth / this.$refs.canvas.clientHeight;
+      this.camera.aspect = this.$refs.canvas.clientWidth / this.$refs.canvas.clientHeight;
       this.camera.updateProjectionMatrix();
     }
   }

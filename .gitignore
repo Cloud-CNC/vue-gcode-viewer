@@ -4,3 +4,7 @@ jspm_packages/
 
 # Optional npm cache directory
 .npm
+
+# Istanbul
+.nyc_output
+coverage

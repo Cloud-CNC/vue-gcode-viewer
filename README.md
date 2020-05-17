@@ -1,5 +1,6 @@
 # Vue GCODE Viewer
 ![status](https://img.shields.io/badge/status-release-brightgreen)
+[![tests](https://img.shields.io/github/workflow/status/Cloud-CNC/vue-gcode-viewer/Tests?label=tests)](https://github.com/Cloud-CNC/vue-gcode-viewer/actions)
 [![issues](https://img.shields.io/github/issues/Cloud-CNC/vue-gcode-viewer)](https://github.com/Cloud-CNC/vue-gcode-viewer/issues)
 [![last commit](https://img.shields.io/github/last-commit/Cloud-CNC/vue-gcode-viewer)](https://github.com/Cloud-CNC/vue-gcode-viewer/commits/master)
 

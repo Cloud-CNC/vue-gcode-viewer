@@ -6,8 +6,7 @@
  * @author wakeful-cloud
  */
 
-import
-{
+import {
   LineBasicMaterial,
   BufferGeometry,
   Float32BufferAttribute,

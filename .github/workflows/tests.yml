@@ -15,7 +15,7 @@ jobs:
       - uses: stefanoeb/eslint-action@1.0.2
         name: ESLint
       - name: Install Modules
-        run: sudo npm ci
+        run: sudo npm ci --unsafe-perm=true --allow-root
       - uses: paambaati/codeclimate-action@v2.6.0
         name: Run Tests
         env:

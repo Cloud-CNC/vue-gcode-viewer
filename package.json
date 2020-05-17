@@ -1,7 +1,6 @@
 {
   "name": "vue-gcode-viewer",
   "version": "1.2.0",
-  "private": true,
   "main": "dist/vue-gcode-viewer.js",
   "scripts": {
     "serve": "vue-cli-service serve src/demo/main.js",

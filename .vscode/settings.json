@@ -1,75 +1,9 @@
 {
-  //Comment Anchors
-  "commentAnchors.tags.list": [
-    /* Comment anchors
-    VULNERABILITY: Potential or known security vulnerabilities; include issue/commit ID if applicable
-    BUG: Potential or known bugs that need fixing; include issue/commit ID if applicable
-    REFRACTOR: Denotes code that needs to be refractored
-    DEBUG: Denotes code that should be removed prior to a commit or a branch merging
-    ANCHOR: Used for marking different parts of long files
-    TODO: Todo note for self or others
-    NOTE: Note for self or others
-    REVIEW: Denotes code that needs review
-    */
-    //Custom tags
-    {
-      "tag": "VULNERABILITY",
-      "scope": "workspace",
-      "iconColor": "teal",
-      "highlightColor": "#26eddd"
-    },
-    {
-      "tag": "BUG",
-      "scope": "workspace",
-      "iconColor": "red",
-      "highlightColor": "#F44336"
-    },
-    {
-      "tag": "REFRACTOR",
-      "scope": "workspace",
-      "iconColor": "yellow",
-      "highlightColor": "#FFD900"
-    },
-    {
-      "tag": "DEBUG",
-      "scope": "workspace",
-      "iconColor": "purple",
-      "highlightColor": "#9E63D4"
-    },
-    //Default tags
-    {
-      "tag": "ANCHOR",
-      "enabled": true
-    },
-    {
-      "tag": "TODO",
-      "enabled": true
-    },
-    {
-      "tag": "FIXME",
-      "enabled": false
-    },
-    {
-      "tag": "STUB",
-      "enabled": false
-    },
-    {
-      "tag": "NOTE",
-      "enabled": true
-    },
-    {
-      "tag": "REVIEW",
-      "enabled": true
-    },
-    {
-      "tag": "SECTION",
-      "enabled": false
-    }
-  ],
   //C Spell
   "cSpell.allowCompoundWords": true,
   "cSpell.language": "en-US,en",
   "cSpell.words": [
+    "Vuelidate",
     "vuetify"
   ],
   //Editor
@@ -77,19 +11,22 @@
   "editor.quickSuggestions": {
     "strings": false
   },
-  //ES Lint
-  "eslint.validate": [
-    "javascript",
-    {
-      "language": "vue",
-      "autoFix": true
-    }
-  ],
   //Vetur
   "vetur.format.defaultFormatter.js": "vscode-typescript",
   "vetur.format.options.tabSize": 2,
   "vetur.format.defaultFormatter.ts": "vscode-typescript",
-  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  //VS Code Counter
+  "VSCodeCounter.exclude": [
+    "**/.cache/**",
+    "**/.github/**",
+    "**/.vscode/**",
+    "**/crypto/**",
+    "**/files/**",
+    "**/dist/**",
+    "**/node_modules/**",
+    "package-lock.json",
+    "package.json"
+  ],
   //Formatter settings
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
   "javascript.preferences.quoteStyle": "single",

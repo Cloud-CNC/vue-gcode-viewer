@@ -6,13 +6,12 @@
  * @author wakeful-cloud
  */
 
-import a from 'three';
-const {
+import {
   LineBasicMaterial,
   BufferGeometry,
   Float32BufferAttribute,
   Line
-} = a;
+} from 'three';
 
 /**
  * @class GCodeParser GCODE parser

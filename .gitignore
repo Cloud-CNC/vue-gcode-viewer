@@ -1,9 +1,29 @@
-# Dependency directories
-node_modules/
-jspm_packages/
+.DS_Store
+node_modules
+/dist
 
-# Optional npm cache directory
-.npm
+/tests/e2e/reports/
+selenium-debug.log
+chromedriver.log
+geckodriver.log
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # Istanbul
 .nyc_output

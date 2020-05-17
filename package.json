@@ -1,6 +1,6 @@
 {
   "name": "vue-gcode-viewer",
-  "version": "0.2.0",
+  "version": "1.2.0",
   "private": true,
   "main": "dist/vue-gcode-viewer.js",
   "scripts": {
@@ -12,6 +12,10 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
   "dependencies": {
     "core-js": "^3.6.4",
     "three": "^0.116.1",

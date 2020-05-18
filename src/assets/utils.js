@@ -3,6 +3,7 @@
  */
 
 //Imports
+import {state} from '@/assets/scene';
 import GCodeParser from '@/assets/gcode-parser';
 
 /**
@@ -12,20 +13,19 @@ const update = {
   /**
    * @function Update bed
    */
-  bed: (plane, bed) =>
+  bed: bed =>
   {
     const {X, Y} = bed;
-    plane.scale.set(X, Y, 1);
+    state.plane.scale.set(X, Y, 1);
   },
 
   /**
    * @function Update GCODE
    * @param {String} raw Raw GCODE
    * @param {Object} theme Theme
-   * @param {Scene} scene ThreeJS scene
-   * @returns {Promise<Object>}
+   * @returns {Promise<void>}
    */
-  gcode: async (raw, theme, scene) =>
+  gcode: async (raw, theme) =>
   {
     const parser = new GCodeParser(
       theme.extrusionColor,
@@ -35,65 +35,64 @@ const update = {
     const object = await parser.parse(raw);
 
     //Add to scene
-    scene.add(object.extrusion);
-    scene.add(object.path);
+    state.scene.add(object.extrusion);
+    state.scene.add(object.path);
 
-    //Return for later manipulation
-    return object;
+    //Save for later manipulation
+    state.object = object;
+
+    window.test = () =>
+    {
+      return state;
+    };
   },
 
   /**
    * @function Update object position
-   * @param {Object} object Object
    * @param {Object} position Position
    */
-  position: (object, position) =>
+  position: position =>
   {
     const {X, Y, Z} = position;
-    object.extrusion.position.set(X, Y, Z);
-    object.path.position.set(X, Y, Z);
+    state.object.extrusion.position.set(X, Y, Z);
+    state.object.path.position.set(X, Y, Z);
   },
 
   /**
    * @function Update object rotation
-   * @param {Object} object Object
    * @param {Object} rotation Rotation
    */
-  rotation: (object, rotation) =>
+  rotation: rotation =>
   {
     let {X, Y, Z} = rotation;
     X *= Math.PI / 180;
     Y *= Math.PI / 180;
     Z *= Math.PI / 180;
-    object.extrusion.rotation.set(X, Y, Z);
-    object.path.rotation.set(X, Y, Z);
+    state.object.extrusion.rotation.set(X, Y, Z);
+    state.object.path.rotation.set(X, Y, Z);
   },
 
   /**
    * @function Update object scale
-   * @param {Object} object Object
    * @param {Object} scale Scale
    */
-  scale: (object, scale) =>
+  scale: scale =>
   {
     const {X, Y, Z} = scale;
-    object.extrusion.scale.set(Z, X, Y);
-    object.path.scale.set(Z, X, Y);
+    state.object.extrusion.scale.set(Z, X, Y);
+    state.object.path.scale.set(Z, X, Y);
   },
 
   /**
    * @function Update scene theme
-   * @param {Object} object Object
    * @param {Object} theme Theme
-   * @param {PlaneGeometry} plane ThreeJS plane
-   * @param {Scene} scene Scene
    */
-  theme: (object, theme, plane, scene) =>
+  theme: theme =>
   {
-    object.extrusion.material.color.set(theme.extrusionColor);
-    object.path.material.color.set(theme.pathColor);
-    plane.material.color.set(theme.bedColor);
-    scene.background.set(theme.backgroundColor);
+    state.object.extrusion.material.color.set(theme.extrusionColor);
+    state.object.path.material.color.set(theme.pathColor);
+    state.plane.material.color.set(theme.bedColor);
+    state.scene.background.set(theme.backgroundColor);
   }
 };
 

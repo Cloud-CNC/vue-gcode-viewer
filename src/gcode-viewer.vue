@@ -53,41 +53,29 @@ export default {
       type: Object
     }
   },
-  data: () => ({
-    camera: null,
-    controls: null,
-    scene: null,
-    plane: null,
-    object: {
-      extrusion: null,
-      path: null
-    },
-    renderer: null,
-    destroyed: false
-  }),
   watch: {
     //Update plane
     bed: {
       deep: true,
       handler: function ()
       {
-        utils.update.bed(this.plane, this.bed);
+        utils.update.bed(this.bed);
       }
     },
     //Update model
-    gcode: function (raw)    
+    gcode: async function (raw)    
     {
-      utils.update.gcode(raw, this.theme, this.scene);
-      utils.update.position(this.object, this.position);
-      utils.update.rotation(this.object, this.rotation);
-      utils.update.scale(this.object, this.scale);
+      await utils.update.gcode(raw, this.theme);
+      utils.update.position(this.position);
+      utils.update.rotation(this.rotation);
+      utils.update.scale(this.scale);
     },
     //Update position
     position: {
       deep: true,
       handler: function (value)
       {
-        utils.update.position(this.object, value);
+        utils.update.position(value);
       }
     },
     //Update rotation
@@ -95,7 +83,7 @@ export default {
       deep: true,
       handler: function (value)
       {
-        utils.update.rotation(this.object, value);
+        utils.update.rotation(value);
       }
     },
     //Update scale
@@ -103,7 +91,7 @@ export default {
       deep: true,
       handler: function (value)
       {
-        utils.update.scale(this.object, value);
+        utils.update.scale(value);
       }
     },
     //Update theme
@@ -111,7 +99,7 @@ export default {
       deep: true,
       handler: function (value)
       {
-        utils.update.theme(this.object, value, this.plane, this.scene);
+        utils.update.theme(value);
       }
     }
   },
@@ -130,7 +118,7 @@ export default {
 
 <style>
 #canvas {
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100%;
 }

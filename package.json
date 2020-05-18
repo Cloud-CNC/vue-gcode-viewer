@@ -1,7 +1,7 @@
 {
   "name": "vue-gcode-viewer",
   "version": "1.2.0",
-  "main": "dist/vue-gcode-viewer.js",
+  "main": "dist/vue-gcode-viewer.common.js",
   "scripts": {
     "serve": "vue-cli-service serve src/demo/main.js",
     "build": "vue-cli-service build --target lib --name vue-gcode-viewer src/main.js",
@@ -11,6 +11,25 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cloud-CNC/vue-gcode-viewer.git"
+  },
+  "keywords": [
+    "vue",
+    "gcode",
+    "gcode-viewer",
+    "vue-gcode-viewer",
+    "gcode-visualizer",
+    "gcode-parser",
+    "cloud-cnc"
+  ],
+  "author": "Cloud CNC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cloud-CNC/vue-gcode-viewer/issues"
+  },
+  "homepage": "https://github.com/Cloud-CNC/vue-gcode-viewer#readme",
   "files": [
     "dist/*",
     "src/*"

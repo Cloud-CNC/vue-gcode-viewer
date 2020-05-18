@@ -6,7 +6,8 @@
  * @author wakeful-cloud
  */
 
-import {
+import
+{
   LineBasicMaterial,
   BufferGeometry,
   Float32BufferAttribute,
@@ -81,15 +82,24 @@ export default class GCodeParser
             f: args.f != null ? absolute(relative, state.f, args.f) : state.f
           };
 
-          //Extruding
-          if (delta(relative, state.e, line.e) > 0)
+          //Only push valid coordinates/states
+          if (!isNaN(line.x) &&
+            !isNaN(line.y) &&
+            !isNaN(line.z) &&
+            !isNaN(line.e) &&
+            !isNaN(line.f)
+          )
           {
-            extrusionVertices.push(line.x, line.y, line.z);
-          }
-          //Path
-          else
-          {
-            pathVertices.push(line.x, line.y, line.z);
+            //Extruding
+            if (delta(relative, state.e, line.e) > 0)
+            {
+              extrusionVertices.push(line.x, line.y, line.z);
+            }
+            //Path
+            else
+            {
+              pathVertices.push(line.x, line.y, line.z);
+            }
           }
 
           //Update position

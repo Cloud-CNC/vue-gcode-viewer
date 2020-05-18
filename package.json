@@ -52,6 +52,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "nyc": "^15.0.1",
     "raw-loader": "^4.0.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-cli-plugin-vuetify": "^2.0.5",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify": "^2.2.28"
   }
 }

@@ -5,7 +5,7 @@
 //Imports
 import {expect} from 'chai';
 import GCodeParser from '@/assets/gcode-parser.js';
-import * as three from 'three';
+import {Color} from 'three';
 
 //Mock GCODE
 const gcode = 'G0 X0 Y0 Z0\nG0 X5 Y0 Z0\nG0 X5 Y5 Z0\nG0 X5 Y5 Z5\nG0 E1 X5 Y5 Z0\nG0 E2 X5 Y0 Z0\nG0 E3 X0 Y0 Z0';
@@ -40,8 +40,8 @@ describe('GCODE parser', () =>
     const parser = new GCodeParser(extrusionColor, pathColor);
     const lines = await parser.parse(gcode);
 
-    expect(lines.extrusion.material.color).to.eql(new three.Color(extrusionColor));
-    expect(lines.path.material.color).to.eql(new three.Color(pathColor));
+    expect(lines.extrusion.material.color).to.eql(new Color(extrusionColor));
+    expect(lines.path.material.color).to.eql(new Color(pathColor));
   });
 
   it('ignores invalid gcode commands and comments', async () =>

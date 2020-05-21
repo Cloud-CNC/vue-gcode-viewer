@@ -15,7 +15,7 @@ import
   Scene,
   WebGLRenderer
 } from 'three';
-import OrbitControls from 'three-orbitcontrols';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import utils from './utils';
 
 //State
@@ -129,6 +129,15 @@ const setup = async (canvas, bed, theme, gcode, position, rotation, scale) =>
     }
   };
   animate();
+
+  //Environment
+  if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'testing')
+  {
+    window.getVueGcodeViewerState = () =>
+    {
+      return state;
+    };
+  }
 };
 
 /**

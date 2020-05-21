@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-navigation-drawer permanent width="400">
-      <v-list dense nav>
+    <v-navigation-drawer dark temporary v-model="drawer" width="400">
+      <v-list dense>
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title class="title">Bed</v-list-item-title>
@@ -50,14 +50,25 @@
             <v-list-item-title class="title">Theme</v-list-item-title>
             <v-list-item-action-text>
               <color-picker label="Extrusion Color" v-model="viewer.theme.extrusionColor" />
+            </v-list-item-action-text>
+            <v-list-item-action-text>
               <color-picker label="Path Color" v-model="viewer.theme.pathColor" />
+            </v-list-item-action-text>
+            <v-list-item-action-text>
               <color-picker label="Bed Color" v-model="viewer.theme.bedColor" />
+            </v-list-item-action-text>
+            <v-list-item-action-text>
               <color-picker label="Background Color" v-model="viewer.theme.backgroundColor" />
             </v-list-item-action-text>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+
+    <v-btn icon class="menu-icon" @click="drawer = !drawer">
+      <v-icon>mdi-menu</v-icon>
+    </v-btn>
+
     <gcode-viewer
       class="emulate-root"
       :bed="viewer.bed"
@@ -78,6 +89,7 @@ import slider from './slider.vue';
 
 export default {
   data: () => ({
+    drawer: false,
     viewer: {
       bed: {
         X: 10,
@@ -129,11 +141,18 @@ export default {
   width: 100%;
 }
 
+.menu-icon {
+  left: 5px;
+  position: absolute !important;
+  top: 5px;
+  z-index: 5;
+}
+
 .v-list {
   max-height: 80vh;
 }
 
 .v-navigation-drawer {
-  z-index: 5;
+  z-index: 10;
 }
 </style>

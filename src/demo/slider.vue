@@ -1,7 +1,7 @@
 <template>
   <v-slider :label="label" @input="input" :min="min" :max="max" :step="step" :value="value">
     <template v-slot:append>
-      <v-text-field dense :label="label" @input="input" :value="value" />
+      <v-text-field dense :label="label" @change="input" :value="value" />
     </template>
   </v-slider>
 </template>

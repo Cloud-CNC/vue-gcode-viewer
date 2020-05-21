@@ -40,11 +40,6 @@ const update = {
 
     //Save for later manipulation
     state.object = object;
-
-    window.test = () =>
-    {
-      return state;
-    };
   },
 
   /**

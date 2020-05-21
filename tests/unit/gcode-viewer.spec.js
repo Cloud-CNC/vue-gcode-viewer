@@ -77,7 +77,7 @@ describe('GCODE viewer', () =>
     expect(gcodeViewer.watch.bed).to.haveOwnProperty('handler');
     expect(gcodeViewer.watch.bed.handler).to.be.a('function');
 
-    expect(gcodeViewer.watch.gcode).to.be.a('function');
+    expect(gcodeViewer.watch.gcode).to.not.be.null;
 
     expect(gcodeViewer.watch.position).to.haveOwnProperty('deep', true);
     expect(gcodeViewer.watch.position).to.haveOwnProperty('handler');

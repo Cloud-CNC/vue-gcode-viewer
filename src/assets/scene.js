@@ -15,7 +15,7 @@ import
   Scene,
   WebGLRenderer
 } from 'three';
-import OrbitControls from 'three-orbitcontrols';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import utils from './utils';
 
 //State
@@ -24,6 +24,8 @@ const state = {
   canvas: null,
   controls: null,
   destroyed: false,
+  object: null,
+  plane: null,
   renderer: null,
   scene: null
 };
@@ -54,29 +56,32 @@ const resize = () =>
  */
 const setup = async (canvas, bed, theme, gcode, position, rotation, scale) =>
 {
+  //Canvas
+  state.canvas = canvas;
+
   //Renderer
   state.renderer = new WebGLRenderer({antialias: true});
   state.renderer.setPixelRatio(window.devicePixelRatio);
   state.renderer.setSize(
-    canvas.clientWidth,
-    canvas.clientHeight
+    state.canvas.clientWidth,
+    state.canvas.clientHeight
   );
   state.renderer.encoding = GammaEncoding;
   state.renderer.outputEncoding = GammaEncoding;
   state.renderer.shadowMap.enabled = true;
-  canvas.appendChild(state.renderer.domElement);
+  state.canvas.appendChild(state.renderer.domElement);
 
   //Camera
-  const camera = new PerspectiveCamera(
+  state.camera = new PerspectiveCamera(
     50,
-    canvas.clientWidth / canvas.clientHeight,
+    state.canvas.clientWidth / state.canvas.clientHeight,
     0.1,
     200
   );
-  camera.position.set(0, bed.X / 2, -bed.Y);
+  state.camera.position.set(0, bed.X / 2, -bed.Y);
 
   //Orbit controls
-  state.controls = new OrbitControls(camera, canvas);
+  state.controls = new OrbitControls(state.camera, state.canvas);
   state.controls.rotateSpeed = 0.7;
   state.controls.minDistance = 1;
   state.controls.maxDistance = 100;
@@ -93,21 +98,21 @@ const setup = async (canvas, bed, theme, gcode, position, rotation, scale) =>
   state.scene.background = new Color(theme.backgroundColor);
 
   //Plane
-  const plane = new Mesh(
+  state.plane = new Mesh(
     new PlaneBufferGeometry(),
     new MeshBasicMaterial({color: new Color(theme.bedColor)})
   );
-  plane.rotation.x = -Math.PI / 2;
-  plane.scale.set(bed.X, bed.Y, 1);
-  state.scene.add(plane);
+  state.plane.rotation.x = -Math.PI / 2;
+  state.plane.scale.set(bed.X, bed.Y, 1);
+  state.scene.add(state.plane);
 
   //GCODE
   if (gcode != null)
   {
-    const object = await utils.update.gcode(gcode, theme, state.scene);
-    utils.update.position(object, position);
-    utils.update.rotation(object, rotation);
-    utils.update.scale(object, scale);
+    await utils.update.gcode(gcode, theme, state.scene);
+    utils.update.position(position);
+    utils.update.rotation(rotation);
+    utils.update.scale(scale);
   }
 
   //Subscribe to resize event
@@ -120,10 +125,19 @@ const setup = async (canvas, bed, theme, gcode, position, rotation, scale) =>
     {
       state.controls.update();
       requestAnimationFrame(animate);
-      state.renderer.render(state.scene, camera);
+      state.renderer.render(state.scene, state.camera);
     }
   };
   animate();
+
+  //Environment
+  if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'testing')
+  {
+    window.getVueGcodeViewerState = () =>
+    {
+      return state;
+    };
+  }
 };
 
 /**
@@ -169,4 +183,4 @@ const teardown = () =>
 };
 
 //Export
-export {setup, teardown};
+export {setup, teardown, state};

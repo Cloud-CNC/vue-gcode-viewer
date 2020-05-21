@@ -1,6 +1,6 @@
 {
   "name": "vue-gcode-viewer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Cloud CNC",
   "scripts": {
     "build:demo": "vue-cli-service build src/demo/main.js",

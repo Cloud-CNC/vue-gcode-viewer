@@ -4,6 +4,7 @@
 [![tests](https://img.shields.io/github/workflow/status/Cloud-CNC/vue-gcode-viewer/Tests?label=tests)](https://github.com/Cloud-CNC/vue-gcode-viewer/actions)
 [![issues](https://img.shields.io/github/issues/Cloud-CNC/vue-gcode-viewer)](https://github.com/Cloud-CNC/vue-gcode-viewer/issues)
 [![last commit](https://img.shields.io/github/last-commit/Cloud-CNC/vue-gcode-viewer)](https://github.com/Cloud-CNC/vue-gcode-viewer/commits/master)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCloud-CNC%2Fvue-gcode-viewer.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCloud-CNC%2Fvue-gcode-viewer?ref=badge_shield)
 
 A Vue component for displaying GCODE via Three.JS (100% client-side).
 
@@ -26,3 +27,6 @@ Name | Type | Description | Example
 
 ## Reuse
 If you're interested in reusing primarily the non-Vue code from this module, you may be interested in [gcode-parser.js](./src/assets/gcode-parser.js), [scene.js](./src/assets/scene.js), and [utils.js](./src/assets/utils.js).
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCloud-CNC%2Fvue-gcode-viewer.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FCloud-CNC%2Fvue-gcode-viewer?ref=badge_large)

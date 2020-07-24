@@ -1,7 +1,7 @@
 <template>
   <v-slider :label="label" @input="input" :min="min" :max="max" :step="step" :value="value">
     <template v-slot:append>
-      <v-text-field dense :label="label" @change="input" :value="value" />
+      <v-text-field dense :data-e2e="dataE2e" :label="label" @change="input" :value="value" />
     </template>
   </v-slider>
 </template>
@@ -10,6 +10,10 @@
 export default {
   name: 'slider',
   props: {
+    dataE2e: {
+      default: undefined,
+      type: String
+    },
     min: {
       default: 0,
       type: Number

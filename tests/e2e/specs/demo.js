@@ -8,29 +8,39 @@ describe('demo', () =>
   {
     cy.visit('/');
 
-    expect(cy.get('#canvas > canvas')).to.not.be.null;
-    expect(cy.get('.v-navigation-drawer')).to.not.be.null;
-    expect(cy.get('#input-11')).to.not.be.null;
-    expect(cy.get('#input-18')).to.not.be.null;
-    expect(cy.get('#input-26')).to.not.be.null;
-    expect(cy.get('#input-33')).to.not.be.null;
-    expect(cy.get('#input-40')).to.not.be.null;
-    expect(cy.get('#input-48')).to.not.be.null;
-    expect(cy.get('#input-55')).to.not.be.null;
-    expect(cy.get('#input-62')).to.not.be.null;
-    expect(cy.get('#input-70')).to.not.be.null;
-    expect(cy.get('#input-77')).to.not.be.null;
-    expect(cy.get('#input-84')).to.not.be.null;
+    cy.wait(5000);
+
+    cy.get('[data-e2e=gcode-viewer] > canvas').should('be.visible');
+    cy.get('[data-e2e=toggle-menu]').should('be.visible');
+
+    cy.get('[data-e2e=toggle-menu]').click();
+
+    cy.get('[data-e2e=menu]').should('be.visible');
+    cy.get('[data-e2e=bed-x]').should('be.visible');
+    cy.get('[data-e2e=bed-y]').should('be.visible');
+    cy.get('[data-e2e=position-x]').should('be.visible');
+    cy.get('[data-e2e=position-y]').should('be.visible');
+    cy.get('[data-e2e=position-z]').should('be.visible');
+    cy.get('[data-e2e=rotation-x]').should('be.visible');
+    cy.get('[data-e2e=rotation-y]').should('be.visible');
+    cy.get('[data-e2e=rotation-z]').should('be.visible');
+    cy.get('[data-e2e=scale-x]').scrollIntoView().should('be.visible');
+    cy.get('[data-e2e=scale-y]').scrollIntoView().should('be.visible');
+    cy.get('[data-e2e=scale-z]').scrollIntoView().should('be.visible');
+    cy.get('[data-e2e=extrusion-color]').scrollIntoView().should('be.visible');
+    cy.get('[data-e2e=path-color]').scrollIntoView().should('be.visible');
+    cy.get('[data-e2e=bed-color]').scrollIntoView().should('be.visible');
+    cy.get('[data-e2e=background-color]').scrollIntoView().should('be.visible');
   });
 
   it('updates the bed', () =>
   {
     cy.visit('/');
 
-    cy.get('.menu-icon > .v-btn__content > .v-icon').click();
+    cy.get('[data-e2e=toggle-menu]').click();
 
-    cy.get('#input-11').clear().type('15{enter}');
-    cy.get('#input-18').clear().type('16.5{enter}');
+    cy.get('[data-e2e=bed-x]').clear().type('15{enter}');
+    cy.get('[data-e2e=bed-y]').clear().type('16.5{enter}');
 
     cy.window().then(window =>
     {
@@ -49,11 +59,11 @@ describe('demo', () =>
 
     cy.visit('/');
 
-    cy.get('.menu-icon > .v-btn__content > .v-icon').click();
+    cy.get('[data-e2e=toggle-menu]').click();
 
-    cy.get('#input-26').clear().type(`${x}{enter}`);
-    cy.get('#input-33').clear().type(`${y}{enter}`);
-    cy.get('#input-40').clear().type(`${z}{enter}`);
+    cy.get('[data-e2e=position-x]').clear().type(`${x}{enter}`);
+    cy.get('[data-e2e=position-y]').clear().type(`${y}{enter}`);
+    cy.get('[data-e2e=position-z]').clear().type(`${z}{enter}`);
 
     cy.window().then(window =>
     {
@@ -76,11 +86,11 @@ describe('demo', () =>
 
     cy.visit('/');
 
-    cy.get('.menu-icon > .v-btn__content > .v-icon').click();
+    cy.get('[data-e2e=toggle-menu]').click();
 
-    cy.get('#input-48').clear().type(`${x}{enter}`);
-    cy.get('#input-55').clear().type(`${y}{enter}`);
-    cy.get('#input-62').clear().type(`${z}{enter}`);
+    cy.get('[data-e2e=rotation-x]').clear().type(`${x}{enter}`);
+    cy.get('[data-e2e=rotation-y]').clear().type(`${y}{enter}`);
+    cy.get('[data-e2e=rotation-z]').clear().type(`${z}{enter}`);
 
     cy.window().then(window =>
     {
@@ -103,11 +113,11 @@ describe('demo', () =>
 
     cy.visit('/');
 
-    cy.get('.menu-icon > .v-btn__content > .v-icon').click();
+    cy.get('[data-e2e=toggle-menu]').click();
 
-    cy.get('#input-70').clear().type(`${x}{enter}`);
-    cy.get('#input-77').clear().type(`${y}{enter}`);
-    cy.get('#input-84').clear().type(`${z}{enter}`);
+    cy.get('[data-e2e=scale-x]').clear().type(`${x}{enter}`);
+    cy.get('[data-e2e=scale-y]').clear().type(`${y}{enter}`);
+    cy.get('[data-e2e=scale-z]').clear().type(`${z}{enter}`);
 
     cy.window().then(window =>
     {
@@ -131,18 +141,18 @@ describe('demo', () =>
 
     cy.visit('/');
 
-    cy.get('.menu-icon > .v-btn__content > .v-icon').click();
+    cy.get('[data-e2e=toggle-menu]').click();
 
     //Set color pickers to hex code
-    cy.get(':nth-child(2) > .v-card > .v-card__text > .v-color-picker > .v-color-picker__controls > .v-color-picker__edit > .v-btn > .v-btn__content > .v-icon').click().click();
-    cy.get(':nth-child(3) > .v-card > .v-card__text > .v-color-picker > .v-color-picker__controls > .v-color-picker__edit > .v-btn > .v-btn__content > .v-icon').click().click();
-    cy.get(':nth-child(4) > .v-card > .v-card__text > .v-color-picker > .v-color-picker__controls > .v-color-picker__edit > .v-btn > .v-btn__content > .v-icon').click().click();
-    cy.get(':nth-child(5) > .v-card > .v-card__text > .v-color-picker > .v-color-picker__controls > .v-color-picker__edit > .v-btn > .v-btn__content > .v-icon').click().click();
+    cy.get('[data-e2e=extrusion-color]').children().eq(1).children().eq(1).children().eq(3).click().click();
+    cy.get('[data-e2e=path-color]').children().eq(1).children().eq(1).children().eq(3).click().click();
+    cy.get('[data-e2e=bed-color]').children().eq(1).children().eq(1).children().eq(3).click().click();
+    cy.get('[data-e2e=background-color]').children().eq(1).children().eq(1).children().eq(3).click().click();
 
-    cy.get(':nth-child(2) > .v-card > .v-card__text > .v-color-picker > .v-color-picker__controls > .v-color-picker__edit > .v-color-picker__input > input').clear().type(`${extrusionColor}{enter}`);
-    cy.get(':nth-child(3) > .v-card > .v-card__text > .v-color-picker > .v-color-picker__controls > .v-color-picker__edit > .v-color-picker__input > input').clear().type(`${pathColor}{enter}`);
-    cy.get(':nth-child(4) > .v-card > .v-card__text > .v-color-picker > .v-color-picker__controls > .v-color-picker__edit > .v-color-picker__input > input').clear().type(`${bedColor}{enter}`);
-    cy.get(':nth-child(5) > .v-card > .v-card__text > .v-color-picker > .v-color-picker__controls > .v-color-picker__edit > .v-color-picker__input > input').clear().type(`${backgroundColor}{enter}`);
+    cy.get('[data-e2e=extrusion-color]').children().eq(1).children().eq(1).children().eq(0).children().eq(0).clear().type(`${extrusionColor}{enter}`);
+    cy.get('[data-e2e=path-color]').children().eq(1).children().eq(1).children().eq(0).children().eq(0).clear().type(`${pathColor}{enter}`);
+    cy.get('[data-e2e=bed-color]').children().eq(1).children().eq(1).children().eq(0).children().eq(0).clear().type(`${bedColor}{enter}`);
+    cy.get('[data-e2e=background-color]').children().eq(1).children().eq(1).children().eq(0).children().eq(0).clear().type(`${backgroundColor}{enter}`);
 
     cy.window().then(window =>
     {

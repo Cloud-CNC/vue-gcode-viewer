@@ -23,7 +23,7 @@ Name | Type | Description | Example
 * [Demo](./src/demo)
 * [Cloud CNC](https://github.com/Cloud-CNC/frontend/blob/development/src/views/file.vue#L43)
 
-*Note: This might use an outdated version of `vue-gcode-viewer`.*
+*Note: These examples might use an outdated version of `vue-gcode-viewer`.*
 
 ## Reuse
 If you're interested in reusing primarily the non-Vue code from this module, you may be interested in [gcode-parser.js](./src/assets/gcode-parser.js), [scene.js](./src/assets/scene.js), and [utils.js](./src/assets/utils.js).

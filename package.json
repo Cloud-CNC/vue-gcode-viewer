@@ -23,10 +23,10 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@cypress/code-coverage": "^3.7.4",
-    "@mdi/font": "^5.2.45",
+    "@cypress/code-coverage": "^3.8.1",
+    "@mdi/font": "^5.5.55",
     "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-plugin-e2e-cypress": "^4.3.1",
+    "@vue/cli-plugin-e2e-cypress": "^4.5.3",
     "@vue/cli-plugin-eslint": "~4.3.0",
     "@vue/cli-plugin-unit-mocha": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
@@ -34,16 +34,16 @@
     "babel-eslint": "^10.1.0",
     "babel-plugin-istanbul": "^6.0.0",
     "chai": "^4.1.2",
-    "concurrently": "^5.2.0",
+    "concurrently": "^5.3.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "geckodriver": "^1.19.1",
-    "nyc": "^15.0.1",
+    "geckodriver": "^1.20.0",
+    "nyc": "^15.1.0",
     "raw-loader": "^4.0.1",
-    "vue-cli-plugin-vuetify": "^2.0.5",
+    "vue-cli-plugin-vuetify": "^2.0.7",
     "vue-template-compiler": "^2.6.11",
-    "vuetify": "^2.2.29",
-    "wait-on": "^5.1.0"
+    "vuetify": "^2.3.8",
+    "wait-on": "^5.2.0"
   },
   "bugs": {
     "url": "https://github.com/Cloud-CNC/vue-gcode-viewer/issues"

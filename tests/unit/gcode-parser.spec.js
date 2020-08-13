@@ -13,7 +13,7 @@ const gcode = 'G0 X0 Y0 Z0\nG0 X5 Y0 Z0\nG0 X5 Y5 Z0\nG0 X5 Y5 Z5\nG0 E1 X5 Y5 Z
 //Unit tests
 describe('GCODE parser', () =>
 {
-  it('generates correct verticies', async () =>
+  it('generates correct vertices', async () =>
   {
     const parser = new GCodeParser('#ffffff', '#000000');
     const lines = await parser.parse(gcode);

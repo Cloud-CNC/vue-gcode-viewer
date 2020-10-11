@@ -1,6 +1,6 @@
 {
   "name": "vue-gcode-viewer",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Cloud CNC",
   "scripts": {
     "build": "vue-cli-service build --target lib --name vue-gcode-viewer src/main.js",
@@ -20,13 +20,13 @@
   "dependencies": {
     "core-js": "^3.6.4",
     "three": "^0.116.1",
-    "vue": "^2.6.11"
+    "vue": "^2.6.12"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.8.1",
-    "@mdi/font": "^5.5.55",
+    "@mdi/font": "^5.6.55",
     "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-plugin-e2e-cypress": "^4.5.3",
+    "@vue/cli-plugin-e2e-cypress": "^4.5.7",
     "@vue/cli-plugin-eslint": "~4.3.0",
     "@vue/cli-plugin-unit-mocha": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
@@ -39,10 +39,10 @@
     "eslint-plugin-vue": "^6.2.2",
     "geckodriver": "^1.20.0",
     "nyc": "^15.1.0",
-    "raw-loader": "^4.0.1",
+    "raw-loader": "^4.0.2",
     "vue-cli-plugin-vuetify": "^2.0.7",
-    "vue-template-compiler": "^2.6.11",
-    "vuetify": "^2.3.8",
+    "vue-template-compiler": "^2.6.12",
+    "vuetify": "^2.3.13",
     "wait-on": "^5.2.0"
   },
   "bugs": {

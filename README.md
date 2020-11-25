@@ -1,15 +1,10 @@
 # Vue GCODE Viewer
-![status](https://img.shields.io/badge/status-Deprecated-orange)
-[![npm](https://img.shields.io/npm/v/vue-gcode-viewer)](https://npmjs.com/package/vue-gcode-viewer)
-[![tests](https://img.shields.io/github/workflow/status/Cloud-CNC/vue-gcode-viewer/Tests?label=tests)](https://github.com/Cloud-CNC/vue-gcode-viewer/actions)
-[![issues](https://img.shields.io/github/issues/Cloud-CNC/vue-gcode-viewer)](https://github.com/Cloud-CNC/vue-gcode-viewer/issues)
-[![last commit](https://img.shields.io/github/last-commit/Cloud-CNC/vue-gcode-viewer)](https://github.com/Cloud-CNC/vue-gcode-viewer/commits/master)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCloud-CNC%2Fvue-gcode-viewer.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCloud-CNC%2Fvue-gcode-viewer?ref=badge_shield)
+![status](https://img.shields.io/badge/status-discontinued-red)
 
 A Vue component for displaying GCODE via Three.JS (100% client-side).
 
-## Deprecation
-**Vue GCODE Viewer is now deprecated!** Please switch to Vue 3D Viewer ([vue-3d-viewer](https://github.com/cloud-cnc/vue-3d-viewer)) which adds support for many more file formats, multithreading, and more.
+# THIS PACKAGE IS DISCONTINUED AND NO LONGER RECEIVES UPDATES!
+Please switch to Vue 3D Viewer ([vue-3d-viewer](https://github.com/cloud-cnc/vue-3d-viewer)) which adds support for many more file formats, multithreading, and more.
 
 ## Documentation
 ### Props
